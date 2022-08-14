@@ -14,7 +14,7 @@ class PagoPartido {
 
     BigDecimal montoAPagar() {
         BigDecimal montoFijoSinInteres = montoFijoSinInteres()
-        BigDecimal interes = PagoPartidoInteres.createInteresPago(partido).interes(montoFijoSinInteres)
+        BigDecimal interes = PagoPartidoInteres.crearInteresPago(partido).interes(montoFijoSinInteres)
         montoFijoSinInteres + interes
     }
 }

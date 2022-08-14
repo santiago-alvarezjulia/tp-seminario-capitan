@@ -8,7 +8,7 @@ abstract class PagoPartidoInteres {
     private static int LIMITE_HORAS_MAX_CERO_INTERES = 24
     private static int LIMITE_HORAS_MAX_CINCO_INTERES = 72
 
-    static PagoPartidoInteres createInteresPago(Partido partido) {
+    static PagoPartidoInteres crearInteresPago(Partido partido) {
         LocalDateTime inicioPartido = partido.getInicioPartido()
         LocalDateTime now = LocalDateTime.now()
         if (now <= inicioPartido.plusHours(LIMITE_HORAS_MAX_CERO_INTERES)) {
