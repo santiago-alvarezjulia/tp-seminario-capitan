@@ -1,6 +1,7 @@
 package capitan
 
 import exceptions.JerarquiaDesconocida
+import exceptions.PartidoYaPagado
 import exceptions.SaldoInsuficiente
 
 class Equipo {
@@ -14,17 +15,19 @@ class Equipo {
     private static String AMATEUR = "amateur"
     private static String PROFESIONAL = "profesional"
 
+    Boolean haPagadoElPartido(Partido partido) {
+        pagoPartidos.any { pagoPartido -> pagoPartido.partido.id == partido.id }
+    }
+
     PagoPartido pagarPartido(Partido partido) {
         BigDecimal montoAPagar = PagoPartido.montoAPagar(partido, this)
         if (montoAPagar > saldo)
             throw new SaldoInsuficiente()
+        if (haPagadoElPartido(partido))
+            throw new PartidoYaPagado()
         saldo -= montoAPagar
         PagoPartido pagoPartido = new PagoPartido(monto: montoAPagar)
         pagoPartido
-    }
-
-    void nuevoSaldo(BigDecimal nuevoSaldo) {
-        setSaldo nuevoSaldo
     }
 
     BigDecimal porcentajePago() {
@@ -38,5 +41,9 @@ class Equipo {
             default:
                 throw new JerarquiaDesconocida()
         }
+    }
+
+    void nuevoSaldo(BigDecimal nuevoSaldo) {
+        setSaldo nuevoSaldo
     }
 }
