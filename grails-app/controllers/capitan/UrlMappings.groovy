@@ -24,5 +24,8 @@ class UrlMappings {
         "/api/v1/pagoPartido"(controller:"pagoPartido") {
             action = [POST: 'crear']
         }
+        "/api/v1/torneo"(controller:"torneo") {
+            action = [POST: 'crear']
+        }
     }
 }
