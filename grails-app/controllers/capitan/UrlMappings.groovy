@@ -15,6 +15,9 @@ class UrlMappings {
         "/api/v1/equipo"(controller:"equipo") {
             action = [POST: 'crear']
         }
+        "/api/v1/equipo/$id?"(controller:"equipo") {
+            action = [PATCH: 'editar']
+        }
         "/api/v1/partido"(controller:"partido") {
             action = [POST: 'crear']
         }

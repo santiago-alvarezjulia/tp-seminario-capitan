@@ -23,6 +23,10 @@ class Equipo {
         pagoPartido
     }
 
+    void nuevoSaldo(BigDecimal nuevoSaldo) {
+        setSaldo nuevoSaldo
+    }
+
     BigDecimal porcentajePago() {
         switch (jerarquia) {
             case AMATEUR:

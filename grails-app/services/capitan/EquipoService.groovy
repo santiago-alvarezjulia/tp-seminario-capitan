@@ -14,4 +14,10 @@ class EquipoService {
         equipo.save()
         equipo
     }
+
+    Equipo editar(Integer id, BigDecimal saldo) {
+        Equipo equipo = Equipo.get(id)
+        equipo.nuevoSaldo(saldo)
+        equipo
+    }
 }
