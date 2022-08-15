@@ -21,10 +21,13 @@ class UrlMappings {
         "/api/v1/partido"(controller:"partido") {
             action = [POST: 'crear']
         }
-        "/api/v1/pagoPartido"(controller:"pagoPartido") {
+        "/api/v1/partido/pago"(controller:"pagoPartido") {
             action = [POST: 'crear']
         }
         "/api/v1/torneo"(controller:"torneo") {
+            action = [POST: 'crear']
+        }
+        "/api/v1/torneo/inscripcion"(controller:"inscripcionTorneo") {
             action = [POST: 'crear']
         }
     }

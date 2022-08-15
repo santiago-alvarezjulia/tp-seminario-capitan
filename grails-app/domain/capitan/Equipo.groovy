@@ -1,5 +1,7 @@
 package capitan
 
+import exceptions.EquipoDebePagarTodosSusPartidos
+import exceptions.EquipoYaInscripto
 import exceptions.JerarquiaDesconocida
 import exceptions.PartidoYaPagado
 import exceptions.SaldoInsuficiente
@@ -10,13 +12,17 @@ class Equipo {
     BigDecimal saldo
     String jerarquia
 
-    static hasMany = [pagoPartidos: PagoPartido]
+    static hasMany = [partidos: Partido, pagoPartidos: PagoPartido, inscripcionTorneos: InscripcionTorneo]
 
     private static String AMATEUR = "amateur"
     private static String PROFESIONAL = "profesional"
 
     Boolean haPagadoElPartido(Partido partido) {
         pagoPartidos.any { pagoPartido -> pagoPartido.partido.id == partido.id }
+    }
+
+    Boolean noHaPagadoTodosSusPartidos() {
+        partidos.size() != pagoPartidos.size()
     }
 
     PagoPartido pagarPartido(Partido partido) {
@@ -26,8 +32,13 @@ class Equipo {
         if (haPagadoElPartido(partido))
             throw new PartidoYaPagado()
         saldo -= montoAPagar
-        PagoPartido pagoPartido = new PagoPartido(monto: montoAPagar)
-        pagoPartido
+        new PagoPartido(monto: montoAPagar)
+    }
+
+    InscripcionTorneo inscribirEnTorneo(Torneo torneo) {
+        if (noHaPagadoTodosSusPartidos())
+            throw new EquipoDebePagarTodosSusPartidos()
+        torneo.inscribirEquipo(this)
     }
 
     BigDecimal porcentajePago() {

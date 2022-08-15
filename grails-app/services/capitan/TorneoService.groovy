@@ -1,7 +1,9 @@
 package capitan
 
 import capitan.interfaces.ITorneoService
+import grails.gorm.transactions.Transactional
 
+@Transactional
 class TorneoService implements ITorneoService {
 
     @Override
