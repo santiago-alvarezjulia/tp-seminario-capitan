@@ -1,9 +1,10 @@
 package capitan
 
+import capitan.interfaces.IPagoPartidoService
 import grails.gorm.transactions.Transactional
 
 @Transactional
-class PagoPartidoService {
+class PagoPartidoService implements IPagoPartidoService {
 
     PagoPartido crear(Integer idEquipo, Integer idPartido) {
         Equipo equipo = Equipo.get(idEquipo)

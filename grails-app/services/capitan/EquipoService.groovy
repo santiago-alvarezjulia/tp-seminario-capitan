@@ -1,9 +1,10 @@
 package capitan
 
+import capitan.interfaces.IEquipoService
 import grails.gorm.transactions.Transactional
 
 @Transactional
-class EquipoService {
+class EquipoService implements IEquipoService {
 
     Equipo crear(String nombre, String jerarquia) {
         Equipo equipo = new Equipo(
@@ -15,9 +16,9 @@ class EquipoService {
         equipo
     }
 
-    Equipo editar(Integer id, BigDecimal saldo) {
+    Equipo cambiarSaldo(Integer id, BigDecimal nuevoSaldo) {
         Equipo equipo = Equipo.get(id)
-        equipo.nuevoSaldo(saldo)
+        equipo.nuevoSaldo(nuevoSaldo)
         equipo
     }
 }

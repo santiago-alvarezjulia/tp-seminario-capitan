@@ -1,5 +1,6 @@
 package capitan
 
+import capitan.interfaces.IPartidoService
 import grails.gorm.transactions.Transactional
 
 import java.time.Instant
@@ -7,7 +8,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 
 @Transactional
-class PartidoService {
+class PartidoService implements IPartidoService {
 
     Partido crear(Long fechaInicio) {
         Instant instant = Instant.ofEpochMilli(fechaInicio)
