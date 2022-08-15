@@ -4,16 +4,13 @@ class PagoPartido {
 
     private Equipo equipo
     private Partido partido
+    BigDecimal monto
 
-    private int MONTO_FIJO_SIN_INTERES = 10_000
-    private int CIEN_PORCIENTO = 100
+    private static int MONTO_FIJO_SIN_INTERES = 10_000
+    private static int CIEN_PORCIENTO = 100
 
-    private BigDecimal montoFijoSinInteres() {
-        (MONTO_FIJO_SIN_INTERES * equipo.porcentajePago()) / CIEN_PORCIENTO
-    }
-
-    BigDecimal montoAPagar() {
-        BigDecimal montoFijoSinInteres = montoFijoSinInteres()
+    static BigDecimal montoAPagar(Partido partido, Equipo equipo) {
+        BigDecimal montoFijoSinInteres = (MONTO_FIJO_SIN_INTERES * equipo.porcentajePago()) / CIEN_PORCIENTO
         BigDecimal interes = PagoPartidoInteres.crearInteresPago(partido).interes(montoFijoSinInteres)
         montoFijoSinInteres + interes
     }
