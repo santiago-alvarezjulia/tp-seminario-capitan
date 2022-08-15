@@ -4,4 +4,6 @@ import java.time.LocalDateTime
 
 class Partido {
     LocalDateTime inicioPartido
+
+    static hasMany = [pagoPartidos: PagoPartido]
 }

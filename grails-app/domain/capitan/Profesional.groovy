@@ -1,6 +1,8 @@
 package capitan
 
-class EquipoProfesional extends Equipo {
+import capitan.Jerarquia
+
+class Profesional extends Jerarquia {
 
     @Override
     BigDecimal porcentajePago() {

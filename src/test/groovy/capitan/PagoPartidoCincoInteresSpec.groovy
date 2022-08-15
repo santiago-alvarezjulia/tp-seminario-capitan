@@ -1,5 +1,6 @@
 package capitan
 
+import domain.PagoPartidoCincoInteres
 import spock.lang.Specification
 
 class PagoPartidoCincoInteresSpec extends Specification {

@@ -1,4 +1,6 @@
-package capitan
+package domain
+
+import capitan.Partido
 
 import java.time.LocalDateTime
 

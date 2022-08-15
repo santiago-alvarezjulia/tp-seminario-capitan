@@ -1,5 +1,6 @@
 package capitan
 
+
 import spock.lang.Specification
 
 class EquipoAmateurSpec extends Specification {
@@ -10,7 +11,7 @@ class EquipoAmateurSpec extends Specification {
 
     void "el porcentajePago vale 50 para EquipoAmateur"() {
         expect:"porcentajePago es 50"
-        EquipoAmateur equipoAmateur = new EquipoAmateur()
+        Amateur equipoAmateur = new Amateur()
         equipoAmateur.porcentajePago() == 50
     }
 }

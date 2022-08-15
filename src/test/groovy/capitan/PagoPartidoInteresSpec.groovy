@@ -1,5 +1,6 @@
 package capitan
 
+import domain.PagoPartidoInteres
 import spock.lang.Specification
 
 import java.time.LocalDateTime

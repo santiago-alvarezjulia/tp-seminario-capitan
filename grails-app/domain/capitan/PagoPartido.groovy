@@ -1,12 +1,13 @@
 package capitan
 
+import domain.PagoPartidoInteres
+
 class PagoPartido {
 
-    private Equipo equipo
-    private Partido partido
     BigDecimal monto
+    static belongsTo = [equipo: Equipo, partido: Partido]
 
-    private static int MONTO_FIJO_SIN_INTERES = 10_000
+    static int MONTO_FIJO_SIN_INTERES = 10_000
     private static int CIEN_PORCIENTO = 100
 
     static BigDecimal montoAPagar(Partido partido, Equipo equipo) {
