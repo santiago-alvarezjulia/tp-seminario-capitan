@@ -10,11 +10,20 @@ import java.time.ZoneId
 @Transactional
 class PartidoService implements IPartidoService {
 
-    Partido crear(Long fechaInicio) {
-        Instant instant = Instant.ofEpochMilli(fechaInicio)
-        LocalDateTime inicioPartido = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
-        Partido partido = new Partido(inicioPartido: inicioPartido)
+    @Override
+    Partido crear(Long fechaInicio, Integer idEquipoLocal, Integer idEquipoVisitante, Integer idTorneo) {
+        LocalDateTime inicioPartido = inicioPartidoConEpochMillis(fechaInicio)
+        Equipo equipoLocal = Equipo.get(idEquipoLocal)
+        Equipo equipoVisitante = Equipo.get(idEquipoVisitante)
+        Torneo torneo = Torneo.get(idTorneo)
+        Partido partido = new Partido(inicioPartido, equipoLocal, equipoVisitante)
+        torneo.agregarPartido(partido)
         partido.save()
         partido
+    }
+
+    private LocalDateTime inicioPartidoConEpochMillis(Long fechaInicio) {
+        Instant instant = Instant.ofEpochMilli(fechaInicio)
+        LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
     }
 }

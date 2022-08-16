@@ -57,4 +57,8 @@ class Equipo {
     void nuevoSaldo(BigDecimal nuevoSaldo) {
         setSaldo nuevoSaldo
     }
+
+    Boolean tieneLaMismaJerarquia(Equipo equipo) {
+        jerarquia == equipo.jerarquia
+    }
 }

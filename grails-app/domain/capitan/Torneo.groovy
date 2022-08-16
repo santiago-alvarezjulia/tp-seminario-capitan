@@ -1,8 +1,10 @@
 package capitan
 
 import exceptions.CuposDisponiblesCompletos
+import exceptions.EquipoNoInscriptoEnTorneo
 import exceptions.EquipoYaInscripto
 import exceptions.NoHayCupoParaJerarquia
+import exceptions.YaExistePartidoDeEstosEquiposEnEsteTorneo
 
 class Torneo {
     Integer cupoEquipos
@@ -34,5 +36,21 @@ class Torneo {
             it.jerarquiaEquipoAlInscribirse == equipo.jerarquia
         }
         (cupoEquipos / 2) == inscripcionesMismaJerarquia
+    }
+
+    void agregarPartido(Partido partido) {
+        if (!haSidoInscriptoEnTorneo(partido.equipoLocal) || !haSidoInscriptoEnTorneo(partido.equipoVisitante))
+            throw new EquipoNoInscriptoEnTorneo()
+        if (yaJugaron(partido.equipoLocal, partido.equipoVisitante))
+            throw new YaExistePartidoDeEstosEquiposEnEsteTorneo()
+        addToPartidos(partido)
+    }
+
+    private Boolean yaJugaron(Equipo equipoLocal, Equipo equipoVisitante) {
+        partidos.forEach { partido ->
+            if (partido.esEntreEstosEquipos(equipoLocal, equipoVisitante))
+                return true
+        }
+        false
     }
 }
