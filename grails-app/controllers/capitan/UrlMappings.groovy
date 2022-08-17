@@ -27,6 +27,9 @@ class UrlMappings {
         "/api/v1/partido/clima"(controller:"partido") {
             action = [PATCH: 'clima']
         }
+        "/api/v1/goles_jugador"(controller:"golesJugador") {
+            action = [POST: 'crear']
+        }
         "/api/v1/torneo"(controller:"torneo") {
             action = [POST: 'crear']
         }

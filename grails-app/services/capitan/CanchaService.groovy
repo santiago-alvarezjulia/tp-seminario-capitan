@@ -2,7 +2,9 @@ package capitan
 
 import capitan.interfaces.ICanchaService
 import domain.Coordenadas
+import grails.gorm.transactions.Transactional
 
+@Transactional
 class CanchaService implements ICanchaService {
     @Override
     Cancha crear(Float latitud, Float longitud) {

@@ -55,4 +55,12 @@ class Equipo {
     Boolean tieneLaMismaJerarquia(Equipo equipo) {
         jerarquia == equipo.jerarquia
     }
+
+    Boolean jugadorNoEsParte(Jugador jugador) {
+        jugadores.every { it.id != jugador.id }
+    }
+
+    Integer puntosPorGolesQueSeSuman(Torneo torneo, Integer cantidadGoles) {
+        Jerarquia.crear(jerarquia).puntosPorGolesQueSeSuman(torneo, cantidadGoles)
+    }
 }

@@ -53,4 +53,14 @@ class Torneo {
         }
         false
     }
+
+    void sumarPuntos(Equipo equipo, Integer cantidadGoles) {
+        InscripcionTorneo inscripcionTorneo = inscripcionTorneoParaEquipo(equipo)
+        Integer puntosPorGolesQueSeSuman = equipo.puntosPorGolesQueSeSuman(this, cantidadGoles)
+        inscripcionTorneo.sumarPuntos(puntosPorGolesQueSeSuman)
+    }
+
+    InscripcionTorneo inscripcionTorneoParaEquipo(Equipo equipo) {
+        inscripcionTorneos.find { it.equipo.id == equipo.id } as InscripcionTorneo
+    }
 }

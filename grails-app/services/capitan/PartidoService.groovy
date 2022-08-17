@@ -48,4 +48,21 @@ class PartidoService implements IPartidoService {
         }
         partidosEnLosProximosCincoDias
     }
+
+    @Override
+    GolesJugadorPartido crearGolesJugadorPartido(
+            Integer idPartido,
+            Integer idEquipo,
+            Integer idJugador,
+            Integer cantidadGoles
+    ) {
+        Partido partido = Partido.get(idPartido)
+        Equipo equipo = Equipo.get(idEquipo)
+        Jugador jugador = Jugador.get(idJugador)
+        GolesJugadorPartido golesJugadorPartido =
+                partido.crearGolesJugadorPartido(equipo, jugador, cantidadGoles)
+        jugador.addToGolesJugadorPartidos(golesJugadorPartido)
+        partido.addToGolesJugadoresPartido(golesJugadorPartido)
+        golesJugadorPartido
+    }
 }

@@ -1,7 +1,9 @@
 package capitan
 
 import exceptions.EquipoDebePagarTodosSusPartidos
+import exceptions.EquipoNoParticipoDelPartido
 import exceptions.FechaDeCreacionPosteriorAInicio
+import exceptions.JugadorNoEsParteDelEquipo
 import exceptions.NoPuedenJugarMismaJerarquia
 
 import java.time.LocalDateTime
@@ -13,7 +15,7 @@ class Partido {
     Cancha cancha
     String estado
 
-    static hasMany = [pagoPartidos: PagoPartido]
+    static hasMany = [pagoPartidos: PagoPartido, golesJugadoresPartido: GolesJugadorPartido]
     static belongsTo = [torneo: Torneo]
 
     private static String ESTADO_HABILITADO_PARA_JUGAR = "HABILITADO_PARA_JUGAR"
@@ -52,5 +54,18 @@ class Partido {
 
     private Boolean hayQueSuspenderPartidoPorLluvia(Float porcentajeLluvia) {
         porcentajeLluvia > UMBRAL_PERMITIDO_PORCENTAJE_LLUVIA
+    }
+
+    GolesJugadorPartido crearGolesJugadorPartido(Equipo equipo, Jugador jugador, Integer cantidadGoles) {
+        if (equipoNoParticipo(equipo))
+            throw new EquipoNoParticipoDelPartido()
+        if (equipo.jugadorNoEsParte(jugador))
+            throw new JugadorNoEsParteDelEquipo()
+        torneo.sumarPuntos(equipo, cantidadGoles)
+        new GolesJugadorPartido(cantidad: cantidadGoles)
+    }
+
+    private Boolean equipoNoParticipo(Equipo equipo) {
+        equipoLocal.id != equipo.id && equipoVisitante.id == equipo.id
     }
 }
