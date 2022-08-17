@@ -1,4 +1,4 @@
-package capitan
+package domain
 
 
 import exceptions.JerarquiaDesconocida

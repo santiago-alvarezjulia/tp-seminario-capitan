@@ -1,6 +1,6 @@
 package capitan
 
-
+import domain.Amateur
 import spock.lang.Specification
 
 class EquipoAmateurSpec extends Specification {

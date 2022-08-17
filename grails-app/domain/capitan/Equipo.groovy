@@ -1,5 +1,6 @@
 package capitan
 
+import domain.Jerarquia
 import exceptions.EquipoDebePagarTodosSusPartidos
 import exceptions.EquipoYaInscripto
 import exceptions.JerarquiaDesconocida
@@ -18,9 +19,6 @@ class Equipo {
             inscripcionTorneos: InscripcionTorneo,
             jugadores: Jugador
     ]
-
-    private static String AMATEUR = "amateur"
-    private static String PROFESIONAL = "profesional"
 
     Boolean haPagadoElPartido(Partido partido) {
         pagoPartidos.any { pagoPartido -> pagoPartido.partido.id == partido.id }
@@ -47,16 +45,7 @@ class Equipo {
     }
 
     BigDecimal porcentajePago() {
-        switch (jerarquia) {
-            case AMATEUR:
-                50
-                break
-            case PROFESIONAL:
-                100
-                break
-            default:
-                throw new JerarquiaDesconocida()
-        }
+        Jerarquia.crear(jerarquia).porcentajePago()
     }
 
     void nuevoSaldo(BigDecimal nuevoSaldo) {

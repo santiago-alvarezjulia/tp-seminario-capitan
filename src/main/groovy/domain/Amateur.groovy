@@ -1,6 +1,6 @@
-package capitan
+package domain
 
-import capitan.Jerarquia
+import domain.Jerarquia
 
 class Amateur extends Jerarquia {
 
