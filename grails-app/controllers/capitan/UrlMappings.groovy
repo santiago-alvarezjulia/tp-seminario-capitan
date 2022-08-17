@@ -42,5 +42,8 @@ class UrlMappings {
         "/api/v1/jugador"(controller:"jugador") {
             action = [POST: 'crear']
         }
+        "/api/v1/jugador/transferir"(controller:"jugador") {
+            action = [POST: 'transferir']
+        }
     }
 }

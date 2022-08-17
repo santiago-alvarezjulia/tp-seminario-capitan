@@ -4,6 +4,7 @@ import domain.Jerarquia
 import exceptions.EquipoDebePagarTodosSusPartidos
 import exceptions.EquipoYaInscripto
 import exceptions.JerarquiaDesconocida
+import exceptions.JugadorNoEsParteDelEquipo
 import exceptions.PartidoYaPagado
 import exceptions.SaldoInsuficiente
 
@@ -12,6 +13,8 @@ class Equipo {
     String nombre
     BigDecimal saldo
     String jerarquia
+
+    private static Integer MONTO_FIJO_TRANSFERENCIA = 1000
 
     static hasMany = [
             partidos: Partido,
@@ -62,5 +65,21 @@ class Equipo {
 
     Integer puntosPorGolesQueSeSuman(Torneo torneo, Integer cantidadGoles) {
         Jerarquia.crear(jerarquia).puntosPorGolesQueSeSuman(torneo, cantidadGoles)
+    }
+
+    Boolean noPuedeTransferirJugador() {
+        saldo < MONTO_FIJO_TRANSFERENCIA
+    }
+
+    void transferirJugadorAOtroEquipo(Jugador jugador) {
+        if (jugadorNoEsParte(jugador))
+            throw new JugadorNoEsParteDelEquipo()
+        setSaldo(saldo -= MONTO_FIJO_TRANSFERENCIA)
+        removeFromJugadores(jugador)
+    }
+
+    void transferirJugadorAEsteEquipo(Jugador jugador) {
+        setSaldo(saldo -= MONTO_FIJO_TRANSFERENCIA)
+        addToJugadores(jugador)
     }
 }
