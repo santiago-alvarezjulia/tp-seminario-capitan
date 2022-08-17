@@ -27,7 +27,7 @@ class Partido {
             throw new NoPuedenJugarMismaJerarquia()
         if (equipoLocal.noHaPagadoTodosSusPartidos() || equipoVisitante.noHaPagadoTodosSusPartidos())
             throw new EquipoDebePagarTodosSusPartidos()
-        if (fechaDeInicioEsPosteriorALaDeCreacion(inicioPartido))
+        if (fechaDeCreacionEsPosteriorALaDeInicio(inicioPartido))
             throw new FechaDeCreacionPosteriorAInicio()
         this.inicioPartido = inicioPartido
         this.equipoLocal = equipoLocal
@@ -36,7 +36,7 @@ class Partido {
         this.estado = ESTADO_HABILITADO_PARA_JUGAR
     }
 
-    private static Boolean fechaDeInicioEsPosteriorALaDeCreacion(LocalDateTime inicioPartido) {
+    private static Boolean fechaDeCreacionEsPosteriorALaDeInicio(LocalDateTime inicioPartido) {
         LocalDateTime.now().isAfter(inicioPartido)
     }
 
