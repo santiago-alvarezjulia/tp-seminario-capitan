@@ -29,8 +29,8 @@ class PartidoService implements IPartidoService {
         Torneo torneo = Torneo.get(idTorneo)
         Cancha cancha = Cancha.get(idCancha)
         Partido partido = new Partido(inicioPartido, equipoLocal, equipoVisitante, cancha)
-        torneo.agregarPartido(partido)
         partido.save()
+        torneo.agregarPartido(partido, equipoLocal, equipoVisitante)
         partido
     }
 

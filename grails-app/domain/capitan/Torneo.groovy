@@ -4,7 +4,7 @@ import exceptions.CuposDisponiblesCompletos
 import exceptions.EquipoNoInscriptoEnTorneo
 import exceptions.EquipoYaInscripto
 import exceptions.NoHayCupoParaJerarquia
-import exceptions.YaExistePartidoDeEstosEquiposEnEsteTorneo
+import exceptions.YaJugaronEntreSiEsteTorneo
 
 class Torneo {
     Integer cupoEquipos
@@ -16,14 +16,14 @@ class Torneo {
     InscripcionTorneo inscribirEquipo(Equipo equipo) {
         if (cuposDisponiblesCompletos())
             throw new CuposDisponiblesCompletos()
-        if (haSidoInscriptoEnTorneo(equipo))
+        if (equipoEstaInscripto(equipo))
             throw new EquipoYaInscripto()
         if (noHayCupoParaJerarquia(equipo))
             throw new NoHayCupoParaJerarquia()
         new InscripcionTorneo(jerarquiaEquipoAlInscribirse: equipo.jerarquia)
     }
 
-    private Boolean haSidoInscriptoEnTorneo(Equipo equipo) {
+    private Boolean equipoEstaInscripto(Equipo equipo) {
         inscripcionTorneos.any { inscripcionTorneo -> inscripcionTorneo.equipo.id == equipo.id }
     }
 
@@ -38,15 +38,15 @@ class Torneo {
         (cupoEquipos / 2) == inscripcionesMismaJerarquia
     }
 
-    void agregarPartido(Partido partido) {
-        if (!haSidoInscriptoEnTorneo(partido.equipoLocal) || !haSidoInscriptoEnTorneo(partido.equipoVisitante))
+    void agregarPartido(Partido partido, Equipo equipoLocal, Equipo equipoVisitante) {
+        if (!equipoEstaInscripto(equipoLocal) || !equipoEstaInscripto(equipoVisitante))
             throw new EquipoNoInscriptoEnTorneo()
-        if (yaJugaron(partido.equipoLocal, partido.equipoVisitante))
-            throw new YaExistePartidoDeEstosEquiposEnEsteTorneo()
+        if (yaJugaronEntreSiEsteTorneo(equipoLocal, equipoVisitante))
+            throw new YaJugaronEntreSiEsteTorneo()
         addToPartidos(partido)
     }
 
-    private Boolean yaJugaron(Equipo equipoLocal, Equipo equipoVisitante) {
+    private Boolean yaJugaronEntreSiEsteTorneo(Equipo equipoLocal, Equipo equipoVisitante) {
         partidos.forEach { partido ->
             if (partido.esEntreEstosEquipos(equipoLocal, equipoVisitante))
                 return true

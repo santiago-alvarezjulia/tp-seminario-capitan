@@ -10,8 +10,8 @@ import java.time.LocalDateTime
 
 class Partido {
     LocalDateTime inicioPartido
-    Equipo equipoLocal
-    Equipo equipoVisitante
+    InscripcionPartido inscripcionEquipoLocal
+    InscripcionPartido inscripcionEquipoVisitante
     Cancha cancha
     String estado
 
@@ -30,8 +30,8 @@ class Partido {
         if (fechaDeInicioEsPosteriorALaDeCreacion(inicioPartido))
             throw new FechaDeCreacionPosteriorAInicio()
         this.inicioPartido = inicioPartido
-        this.equipoLocal = equipoLocal
-        this.equipoVisitante = equipoVisitante
+        this.setInscripcionEquipoLocal new InscripcionPartido(jugadoresDisponiblesParaJugar: equipoLocal.jugadores)
+        this.setInscripcionEquipoVisitante new InscripcionPartido(jugadoresDisponiblesParaJugar: equipoVisitante.jugadores)
         this.cancha = cancha
         this.estado = ESTADO_HABILITADO_PARA_JUGAR
     }
@@ -41,8 +41,10 @@ class Partido {
     }
 
     Boolean esEntreEstosEquipos(Equipo equipoLocal, Equipo equipoVisitante) {
-        (this.equipoLocal.id == equipoLocal.id && this.equipoVisitante.id == equipoVisitante.id) ||
-                (this.equipoLocal.id == equipoVisitante.id && this.equipoVisitante.id == equipoLocal.id)
+        (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoLocal) &&
+                this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoVisitante)) ||
+                (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoVisitante) &&
+                        this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoLocal))
     }
 
     void actualizarEstadoSegunClima(Float porcentajeLluvia) {
@@ -57,15 +59,21 @@ class Partido {
     }
 
     GolesJugadorPartido crearGolesJugadorPartido(Equipo equipo, Jugador jugador, Integer cantidadGoles) {
-        if (equipoNoParticipo(equipo))
+        if (equipoNoParticipoDelPartido(equipo))
             throw new EquipoNoParticipoDelPartido()
-        if (equipo.jugadorNoEsParte(jugador))
+        if (jugadorNoEsParteDeLosEquipos(jugador))
             throw new JugadorNoEsParteDelEquipo()
         torneo.sumarPuntos(equipo, cantidadGoles)
-        new GolesJugadorPartido(cantidad: cantidadGoles)
+        new GolesJugadorPartido(cantidadGoles)
     }
 
-    private Boolean equipoNoParticipo(Equipo equipo) {
-        equipoLocal.id != equipo.id && equipoVisitante.id == equipo.id
+    private Boolean equipoNoParticipoDelPartido(Equipo equipo) {
+        !inscripcionEquipoLocal.perteneceAlEquipo(equipo) &&
+                !inscripcionEquipoVisitante.perteneceAlEquipo(equipo)
+    }
+
+    private Boolean jugadorNoEsParteDeLosEquipos(Jugador jugador) {
+        inscripcionEquipoLocal.equipo.jugadorNoEsParte(jugador) &&
+                inscripcionEquipoVisitante.equipo.jugadorNoEsParte(jugador)
     }
 }
