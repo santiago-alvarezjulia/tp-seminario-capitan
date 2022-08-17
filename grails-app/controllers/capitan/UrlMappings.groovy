@@ -24,10 +24,16 @@ class UrlMappings {
         "/api/v1/partido/pago"(controller:"pagoPartido") {
             action = [POST: 'crear']
         }
+        "/api/v1/partido/clima"(controller:"partido") {
+            action = [PATCH: 'clima']
+        }
         "/api/v1/torneo"(controller:"torneo") {
             action = [POST: 'crear']
         }
         "/api/v1/torneo/inscripcion"(controller:"inscripcionTorneo") {
+            action = [POST: 'crear']
+        }
+        "/api/v1/cancha"(controller:"cancha") {
             action = [POST: 'crear']
         }
     }
