@@ -22,7 +22,8 @@ class Partido {
     private static String ESTADO_SUSPENDIDO_POR_CLIMA_ADVERSO = "SUSPENDIDO_POR_CLIMA_ADVERSO"
     private static Float UMBRAL_PERMITIDO_PORCENTAJE_LLUVIA = 50F
 
-    Partido(LocalDateTime inicioPartido, Equipo equipoLocal, Equipo equipoVisitante, Cancha cancha) {
+    Partido(LocalDateTime inicioPartido, Equipo equipoLocal, Equipo equipoVisitante, Cancha cancha,
+            InscripcionPartido inscripcionEquipoLocal, InscripcionPartido inscripcionEquipoVisitante) {
         if (equipoLocal.tieneLaMismaJerarquia(equipoVisitante))
             throw new NoPuedenJugarMismaJerarquia()
         if (equipoLocal.noHaPagadoTodosSusPartidos() || equipoVisitante.noHaPagadoTodosSusPartidos())
@@ -30,9 +31,9 @@ class Partido {
         if (fechaDeInicioEsPosteriorALaDeCreacion(inicioPartido))
             throw new FechaDeCreacionPosteriorAInicio()
         this.inicioPartido = inicioPartido
-        this.setInscripcionEquipoLocal new InscripcionPartido(jugadoresDisponiblesParaJugar: equipoLocal.jugadores)
-        this.setInscripcionEquipoVisitante new InscripcionPartido(jugadoresDisponiblesParaJugar: equipoVisitante.jugadores)
         this.cancha = cancha
+//        this.inscripcionEquipoLocal = inscripcionEquipoLocal
+//        this.inscripcionEquipoVisitante = inscripcionEquipoVisitante
         this.estado = ESTADO_HABILITADO_PARA_JUGAR
     }
 
@@ -41,10 +42,11 @@ class Partido {
     }
 
     Boolean esEntreEstosEquipos(Equipo equipoLocal, Equipo equipoVisitante) {
-        (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoLocal) &&
-                this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoVisitante)) ||
-                (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoVisitante) &&
-                        this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoLocal))
+        false
+//        (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoLocal) &&
+//                this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoVisitante)) ||
+//                (this.inscripcionEquipoLocal.perteneceAlEquipo(equipoVisitante) &&
+//                        this.inscripcionEquipoVisitante.perteneceAlEquipo(equipoLocal))
     }
 
     void actualizarEstadoSegunClima(Float porcentajeLluvia) {
@@ -68,12 +70,14 @@ class Partido {
     }
 
     private Boolean equipoNoParticipoDelPartido(Equipo equipo) {
-        !inscripcionEquipoLocal.perteneceAlEquipo(equipo) &&
-                !inscripcionEquipoVisitante.perteneceAlEquipo(equipo)
+        false
+//        !inscripcionEquipoLocal.perteneceAlEquipo(equipo) &&
+//                !inscripcionEquipoVisitante.perteneceAlEquipo(equipo)
     }
 
     private Boolean jugadorNoEsParteDeLosEquipos(Jugador jugador) {
-        inscripcionEquipoLocal.equipo.jugadorNoEsParte(jugador) &&
-                inscripcionEquipoVisitante.equipo.jugadorNoEsParte(jugador)
+        false
+//        inscripcionEquipoLocal.equipo.jugadorNoEsParte(jugador) &&
+//                inscripcionEquipoVisitante.equipo.jugadorNoEsParte(jugador)
     }
 }

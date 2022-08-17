@@ -17,7 +17,8 @@ class Equipo {
             partidos: Partido,
             pagoPartidos: PagoPartido,
             inscripcionTorneos: InscripcionTorneo,
-            jugadores: Jugador
+            jugadores: Jugador,
+            inscripcionPartidos: InscripcionPartido
     ]
 
     Boolean haPagadoElPartido(Partido partido) {

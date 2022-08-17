@@ -1,7 +1,7 @@
 package capitan
 
 class InscripcionPartido {
-    List<Jugador> jugadoresDisponiblesParaJugar
+    String hola = "HOLA"
     static belongsTo = [equipo: Equipo, partido: Partido]
 
     Boolean perteneceAlEquipo(Equipo equipo) {
