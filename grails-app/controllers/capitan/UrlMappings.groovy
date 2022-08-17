@@ -36,5 +36,8 @@ class UrlMappings {
         "/api/v1/cancha"(controller:"cancha") {
             action = [POST: 'crear']
         }
+        "/api/v1/jugador"(controller:"jugador") {
+            action = [POST: 'crear']
+        }
     }
 }

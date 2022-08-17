@@ -12,7 +12,12 @@ class Equipo {
     BigDecimal saldo
     String jerarquia
 
-    static hasMany = [partidos: Partido, pagoPartidos: PagoPartido, inscripcionTorneos: InscripcionTorneo]
+    static hasMany = [
+            partidos: Partido,
+            pagoPartidos: PagoPartido,
+            inscripcionTorneos: InscripcionTorneo,
+            jugadores: Jugador
+    ]
 
     private static String AMATEUR = "amateur"
     private static String PROFESIONAL = "profesional"

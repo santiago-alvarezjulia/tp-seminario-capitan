@@ -2,6 +2,7 @@ package spring
 
 import capitan.CanchaService
 import capitan.EquipoService
+import capitan.JugadorService
 import capitan.PagoPartidoService
 import capitan.PartidoService
 import capitan.TorneoService
@@ -20,4 +21,5 @@ beans = {
     canchaService(CanchaService)
     partidoRepository(PartidoRepository)
     climaRepository(ClimaRepository)
+    jugadorService(JugadorService)
 }
