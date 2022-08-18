@@ -13,7 +13,7 @@ class TorneoService implements ITorneoService {
                 puntosPorGolAmateur: puntosPorGolAmateur,
                 puntosPorGolProfesional: puntosPorGolProfesional
         )
-        torneo.save()
+        torneo.save(failOnError:true)
         torneo
     }
 }

@@ -12,7 +12,7 @@ class InscripcionTorneoController {
     def crear() {
         Integer idEquipo = request.JSON.get(ID_EQUIPO_KEY)
         Integer idTorneo = request.JSON.get(ID_TORNEO_KEY)
-        InscripcionTorneo inscripcionTorneo = inscripcionTorneoService.crear(idEquipo, idTorneo)
+        InscripcionTorneo inscripcionTorneo = inscripcionTorneoService.inscribirEquipoEnTorneo(idEquipo, idTorneo)
         render inscripcionTorneo as JSON
     }
 }

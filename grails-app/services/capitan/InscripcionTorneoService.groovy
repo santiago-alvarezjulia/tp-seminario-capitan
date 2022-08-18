@@ -7,7 +7,7 @@ import grails.gorm.transactions.Transactional
 class InscripcionTorneoService implements IInscripcionTorneoService {
 
     @Override
-    InscripcionTorneo crear(Integer idEquipo, Integer idTorneo) {
+    InscripcionTorneo inscribirEquipoEnTorneo(Integer idEquipo, Integer idTorneo) {
         Torneo torneo = Torneo.get(idTorneo)
         Equipo equipo = Equipo.get(idEquipo)
         InscripcionTorneo inscripcionTorneo = equipo.inscribirEnTorneo(torneo)

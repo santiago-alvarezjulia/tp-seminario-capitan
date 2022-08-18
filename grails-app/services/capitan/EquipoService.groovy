@@ -12,7 +12,7 @@ class EquipoService implements IEquipoService {
                 saldo: PagoPartido.MONTO_FIJO_SIN_INTERES,
                 jerarquia: jerarquia
         )
-        equipo.save()
+        equipo.save(failOnError:true)
         equipo
     }
 

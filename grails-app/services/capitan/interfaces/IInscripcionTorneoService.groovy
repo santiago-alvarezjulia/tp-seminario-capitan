@@ -3,5 +3,5 @@ package capitan.interfaces
 import capitan.InscripcionTorneo
 
 interface IInscripcionTorneoService {
-    InscripcionTorneo crear(Integer idEquipo, Integer idTorneo)
+    InscripcionTorneo inscribirEquipoEnTorneo(Integer idEquipo, Integer idTorneo)
 }
