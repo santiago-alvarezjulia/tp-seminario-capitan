@@ -13,4 +13,8 @@ class TorneoController {
         Torneo torneo = torneoService.crear(cupoEquipos)
         render torneo as JSON
     }
+
+    def torneos() {
+        render Torneo.getAll() as JSON
+    }
 }

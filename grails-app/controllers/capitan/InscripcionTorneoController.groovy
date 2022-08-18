@@ -15,4 +15,8 @@ class InscripcionTorneoController {
         InscripcionTorneo inscripcionTorneo = inscripcionTorneoService.inscribirEquipoEnTorneo(idEquipo, idTorneo)
         render inscripcionTorneo as JSON
     }
+
+    def inscripciones() {
+        render InscripcionTorneo.getAll() as JSON
+    }
 }

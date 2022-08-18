@@ -22,4 +22,8 @@ class EquipoController {
         Equipo equipo = equipoService.cambiarSaldo(id, saldo)
         render equipo as JSON
     }
+
+    def equipos() {
+        render Equipo.getAll() as JSON
+    }
 }

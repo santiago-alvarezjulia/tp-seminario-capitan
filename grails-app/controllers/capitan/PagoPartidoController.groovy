@@ -15,4 +15,8 @@ class PagoPartidoController {
         PagoPartido pagoPartido = pagoPartidoService.crearPagoDePartidoPorParteDeEquipo(idEquipo, idPartido)
         render pagoPartido as JSON
     }
+
+    def pagosPartido() {
+        render PagoPartido.getAll() as JSON
+    }
 }

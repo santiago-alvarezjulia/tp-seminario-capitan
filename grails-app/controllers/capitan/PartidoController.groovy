@@ -32,4 +32,8 @@ class PartidoController {
         List<Partido> partidos = partidoService.actualizarPartidosAunNoJugadosSegunClima()
         render partidos as JSON
     }
+
+    def partidos() {
+        render Partido.getAll() as JSON
+    }
 }

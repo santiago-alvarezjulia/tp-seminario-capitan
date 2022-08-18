@@ -15,4 +15,8 @@ class CanchaController {
         Cancha cancha = canchaService.crear(latitud, longitud)
         render cancha as JSON
     }
+
+    def canchas() {
+        render Cancha.getAll() as JSON
+    }
 }

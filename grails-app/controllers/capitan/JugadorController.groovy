@@ -26,4 +26,8 @@ class JugadorController {
         Jugador jugador = jugadorService.transferir(idJugador, idEquipoActual, idEquipoNuevo)
         render jugador as JSON
     }
+
+    def jugadores() {
+        render Jugador.getAll() as JSON
+    }
 }

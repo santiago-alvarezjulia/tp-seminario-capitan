@@ -20,4 +20,8 @@ class GolesJugadorController {
                 partidoService.crearGolesJugadorPartido(idPartido, idEquipo, idJugador, cantidadGoles)
         render golesJugadorPartido as JSON
     }
+
+    def golesJugadoresPartido() {
+        render GolesJugadorPartido.getAll() as JSON
+    }
 }
