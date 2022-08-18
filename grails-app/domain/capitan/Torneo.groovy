@@ -3,7 +3,7 @@ package capitan
 import exceptions.CupoEquiposNoEsParMayorACero
 import exceptions.CuposDisponiblesCompletos
 import exceptions.EquipoNoInscriptoEnTorneo
-import exceptions.EquipoYaInscripto
+import exceptions.EquipoYaInscriptoEnTorneo
 import exceptions.NoHayCupoParaJerarquia
 import exceptions.YaExistePartidoDeEstosEquiposEnEsteTorneo
 
@@ -33,7 +33,7 @@ class Torneo {
         if (cuposDisponiblesCompletos())
             throw new CuposDisponiblesCompletos()
         if (haSidoInscriptoEnTorneo(equipo))
-            throw new EquipoYaInscripto()
+            throw new EquipoYaInscriptoEnTorneo()
         if (noHayCupoParaJerarquia(equipo))
             throw new NoHayCupoParaJerarquia()
         new InscripcionTorneo(jerarquiaEquipoAlInscribirse: equipo.jerarquia)

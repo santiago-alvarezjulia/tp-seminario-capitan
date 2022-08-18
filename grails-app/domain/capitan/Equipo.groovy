@@ -2,8 +2,6 @@ package capitan
 
 import domain.Jerarquia
 import exceptions.EquipoDebePagarTodosSusPartidos
-import exceptions.EquipoYaInscripto
-import exceptions.JerarquiaDesconocida
 import exceptions.JugadorNoEsParteDelEquipo
 import exceptions.PartidoYaPagado
 import exceptions.SaldoInsuficiente

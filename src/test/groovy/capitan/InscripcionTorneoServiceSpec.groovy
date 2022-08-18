@@ -6,7 +6,7 @@ import capitan.helpers.PartidoHelper
 import capitan.helpers.TorneoHelper
 import exceptions.CuposDisponiblesCompletos
 import exceptions.EquipoDebePagarTodosSusPartidos
-import exceptions.EquipoYaInscripto
+import exceptions.EquipoYaInscriptoEnTorneo
 import exceptions.NoHayCupoParaJerarquia
 import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.*
@@ -64,7 +64,7 @@ class InscripcionTorneoServiceSpec extends Specification {
             service.inscribirEquipoEnTorneo(equipo.id as Integer, torneo.id as Integer)
             service.inscribirEquipoEnTorneo(equipo.id as Integer, torneo.id as Integer)
         then:
-            thrown EquipoYaInscripto
+            thrown EquipoYaInscriptoEnTorneo
     }
 
     void "inscripcion de equipo a un torneo nuevo que no pago un partido anterior"() {
