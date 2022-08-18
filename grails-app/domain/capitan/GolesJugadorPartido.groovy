@@ -7,7 +7,7 @@ class GolesJugadorPartido {
     static belongsTo = [jugador: Jugador, partido: Partido]
 
     GolesJugadorPartido(Integer cantidad) {
-        if (cantidad > 0)
+        if (cantidad <= 0)
             throw new CantidadDeGolesNoEsMayorQueCero()
         this.cantidad = cantidad
     }

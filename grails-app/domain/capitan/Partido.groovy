@@ -62,7 +62,7 @@ class Partido {
         if (equipo.jugadorNoEsParte(jugador))
             throw new JugadorNoEsParteDelEquipo()
         torneo.sumarPuntos(equipo, cantidadGoles)
-        new GolesJugadorPartido(cantidad: cantidadGoles)
+        new GolesJugadorPartido(cantidadGoles)
     }
 
     private Boolean equipoNoParticipo(Equipo equipo) {
