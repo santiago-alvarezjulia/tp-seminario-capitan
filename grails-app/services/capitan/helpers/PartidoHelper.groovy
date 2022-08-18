@@ -8,8 +8,8 @@ import capitan.Partido
 import java.time.LocalDateTime
 
 class PartidoHelper {
-    static Partido crear(Equipo equipoLocal, Equipo equipoVisitante, Cancha cancha) {
-        Partido partido = new Partido(LocalDateTime.now().plusDays(1), equipoLocal, equipoVisitante, cancha)
+    static Partido crear(LocalDateTime fechaInicio, Equipo equipoLocal, Equipo equipoVisitante, Cancha cancha) {
+        Partido partido = new Partido(fechaInicio, equipoLocal, equipoVisitante, cancha)
         partido.pagoPartidos = []
         partido.golesJugadoresPartido = []
         partido

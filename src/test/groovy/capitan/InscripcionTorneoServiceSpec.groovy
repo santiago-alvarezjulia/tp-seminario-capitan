@@ -13,6 +13,8 @@ import grails.gorm.transactions.*
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Specification
 
+import java.time.LocalDateTime
+
 @Integration
 @Rollback
 class InscripcionTorneoServiceSpec extends Specification {
@@ -78,7 +80,7 @@ class InscripcionTorneoServiceSpec extends Specification {
             service.inscribirEquipoEnTorneo(otroEquipo.id as Integer, torneo.id as Integer)
             Cancha cancha = CanchaHelper.crear()
             cancha.save(failOnError:true)
-            Partido partido = PartidoHelper.crear(equipo, otroEquipo, cancha)
+            Partido partido = PartidoHelper.crear(LocalDateTime.now().plusDays(1), equipo, otroEquipo, cancha)
             torneo.agregarPartido(partido)
             equipo.addToPartidos(partido)
             otroEquipo.addToPartidos(partido)

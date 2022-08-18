@@ -12,7 +12,7 @@ class PagoPartidoController {
     def crear() {
         Integer idEquipo = request.JSON.get(ID_EQUIPO_KEY)
         Integer idPartido = request.JSON.get(ID_PARTIDO_KEY)
-        PagoPartido pagoPartido = pagoPartidoService.crear(idEquipo, idPartido)
+        PagoPartido pagoPartido = pagoPartidoService.crearPagoDePartidoPorParteDeEquipo(idEquipo, idPartido)
         render pagoPartido as JSON
     }
 }

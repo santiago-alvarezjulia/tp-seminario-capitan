@@ -8,7 +8,7 @@ class GolesJugadorPartidoSpec extends Specification {
     void "cero goles para el jugador en el partido"() {
         expect:"lanza excepcion CantidadDeGolesNoEsMayorQueCero"
         when:
-            GolesJugadorPartido golesJugadorPartido = new GolesJugadorPartido(0)
+            new GolesJugadorPartido(0)
         then:
             thrown CantidadDeGolesNoEsMayorQueCero
     }
