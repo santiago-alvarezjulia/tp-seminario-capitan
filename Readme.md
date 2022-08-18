@@ -1,1 +1,1 @@
-Para que funcione la feature de actualizar partidos segun clima, hay que obtener una API KEY de https://openweathermap.org/ y ponerla en la variable de ambiente WEATHER_API_KEY para que la aplicación la pueda leer
+Para que funcione la feature de actualizar partidos segun clima, hay que obtener una API KEY de https://openweathermap.org/ y ponerla en la variable de entorno WEATHER_API_KEY para que la aplicación la pueda leer
