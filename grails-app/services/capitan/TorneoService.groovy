@@ -7,12 +7,8 @@ import grails.gorm.transactions.Transactional
 class TorneoService implements ITorneoService {
 
     @Override
-    Torneo crear(Integer cupoEquipos, Integer puntosPorGolAmateur, Integer puntosPorGolProfesional) {
-        Torneo torneo = new Torneo(
-                cupoEquipos: cupoEquipos,
-                puntosPorGolAmateur: puntosPorGolAmateur,
-                puntosPorGolProfesional: puntosPorGolProfesional
-        )
+    Torneo crear(Integer cupoEquipos) {
+        Torneo torneo = new Torneo(cupoEquipos)
         torneo.save(failOnError:true)
         torneo
     }

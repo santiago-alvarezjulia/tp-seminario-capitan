@@ -1,5 +1,6 @@
 package capitan
 
+import exceptions.CupoEquiposNoEsParMayorACero
 import exceptions.CuposDisponiblesCompletos
 import exceptions.EquipoNoInscriptoEnTorneo
 import exceptions.EquipoYaInscripto
@@ -12,6 +13,21 @@ class Torneo {
     Integer puntosPorGolProfesional
 
     static hasMany = [partidos: Partido, inscripcionTorneos: InscripcionTorneo]
+
+    static Integer PUNTOS_POR_GOL_AMATEUR = 3
+    static Integer PUNTOS_POR_GOL_PROFESIONAL = 1
+
+    Torneo(Integer cupoEquipos) {
+        if (!cupoEquiposEsParMayorACero(cupoEquipos))
+            throw new CupoEquiposNoEsParMayorACero()
+        this.cupoEquipos = cupoEquipos
+        this.puntosPorGolAmateur = PUNTOS_POR_GOL_AMATEUR
+        this.puntosPorGolProfesional = PUNTOS_POR_GOL_PROFESIONAL
+    }
+
+    private Boolean cupoEquiposEsParMayorACero(Integer cupoEquipos) {
+        (cupoEquipos % 2 == 0) && cupoEquipos > 0
+    }
 
     InscripcionTorneo inscribirEquipo(Equipo equipo) {
         if (cuposDisponiblesCompletos())

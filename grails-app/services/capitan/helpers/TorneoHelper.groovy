@@ -5,7 +5,7 @@ import capitan.Torneo
 
 class TorneoHelper {
     static Torneo crearTorneo(Integer cupo) {
-        Torneo torneo = new Torneo(cupoEquipos: cupo, puntosPorGolAmateur: 3, puntosPorGolProfesional: 1)
+        Torneo torneo = new Torneo(cupo)
         torneo.inscripcionTorneos = []
         torneo.partidos = []
         torneo
