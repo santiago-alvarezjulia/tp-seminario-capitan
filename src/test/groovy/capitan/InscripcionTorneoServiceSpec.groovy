@@ -19,17 +19,20 @@ class InscripcionTorneoServiceSpec extends Specification {
 
     @Autowired InscripcionTorneoService service
 
-    void "inscripcion de 2 equipos para torneo con 1 cupo"() {
+    void "inscripcion de 3 equipos para torneo con 2 cupos"() {
         expect:"lanza excepcion CuposDisponiblesCompletos"
         when:
             Equipo equipo = EquipoHelper.crear()
             equipo.save(failOnError:true)
-            Torneo torneo = TorneoHelper.crearTorneo(1)
+            Torneo torneo = TorneoHelper.crearTorneo(2)
             torneo.save(failOnError:true)
             service.inscribirEquipoEnTorneo(equipo.id as Integer, torneo.id as Integer)
-            Equipo equipo2 = EquipoHelper.crear()
+            Equipo equipo2 = EquipoHelper.crear("profesional")
             equipo2.save(failOnError:true)
             service.inscribirEquipoEnTorneo(equipo2.id as Integer, torneo.id as Integer)
+            Equipo equipo3 = EquipoHelper.crear("profesional")
+            equipo3.save(failOnError:true)
+            service.inscribirEquipoEnTorneo(equipo3.id as Integer, torneo.id as Integer)
         then:
             thrown CuposDisponiblesCompletos
     }
